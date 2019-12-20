@@ -64,7 +64,8 @@ typedef MouseEventDart = void Function(
   int dwExtraInfo,
 );
 
-/// Set the cursor position
+/// Synthesizes mouse motion and button clicks.
+/// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
 void MouseEvent(
     {int dwFlags = 0,
     int dx = 0,

@@ -1,6 +1,6 @@
 name: dart_winapi
 description: Dart implementation of winapi.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Hexer10/dart_winapi
 
 environment:
