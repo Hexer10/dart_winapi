@@ -3,6 +3,7 @@ import 'dart:ffi';
 export 'find_window_ex_a.dart';
 export 'get_cursor_pos.dart';
 export 'get_desktop_window.dart';
+export 'get_key_state.dart';
 export 'get_window_text_a.dart';
 export 'get_window_text_length_a.dart';
 export 'hwnd.dart';
