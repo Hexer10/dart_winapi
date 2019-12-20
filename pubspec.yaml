@@ -1,0 +1,10 @@
+name: dart_winapi
+description: Dart implementation of winapi.
+version: 0.0.1
+
+environment:
+  sdk: '>=2.6.0 <3.0.0'
+
+dependencies:
+  meta: ^1.1.8
+  ffi: ^0.1.3
