@@ -10,3 +10,8 @@ build/
 # Directory created by dartdoc
 doc/api/
 bin/
+
+# IDE
+
+.idea/
+dart_winapi.iml
