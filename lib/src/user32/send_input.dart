@@ -17,6 +17,7 @@ typedef SendInputC = Uint32 Function(
 typedef SendInputDart = int Function(int inputCount, Pointer inputs, int size);
 
 @experimental
+
 /// Synthesizes keystrokes, mouse motions, and button clicks.
 /// Not working.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput

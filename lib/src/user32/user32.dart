@@ -12,6 +12,5 @@ export 'mouse_event.dart';
 export 'send_input.dart';
 export 'set_cursor_position.dart';
 
-
 /// User32.dll library
 final dylib = DynamicLibrary.open('User32.dll');
