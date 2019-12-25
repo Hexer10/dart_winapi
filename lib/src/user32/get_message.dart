@@ -20,6 +20,9 @@ class Msg extends Struct {
   @Uint32()
   int message;
 
+  @Int32()
+  int wParam;
+
   @Uint32()
   int lParam;
 
@@ -42,17 +45,18 @@ class Msg extends Struct {
   UINT  wMsgFilterMax
  */
 typedef GetMessageC = Uint8 Function(Pointer<Msg> lpMsg, Pointer<Hwnd> hwnd,
-    Uint32 wMsgFilterMin, Uint32 wMsgFilterMax);
+    Uint32 wMsgFilterMin, Uint64 wMsgFilterMax);
 
 typedef GetMessageDart = int Function(Pointer<Msg> lpMsg, Pointer<Hwnd> hwnd,
     int wMsgFilterMin, int wMsgFilterMax);
 
-/// Get the current cursor position.
-/// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos
+/// Get message
+/// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage
 bool GetMessage(Pointer<Msg> lpMsg, Pointer<Hwnd> hwnd, int wMsgFilterMin,
-    int wMsgFilterMax) {
-  final GetMessageP =
-      dylib.lookupFunction<GetMessageC, GetMessageDart>('GetMessage');
+    int wMsgFilterMax,
+    {TextFormat textFormat = TextFormat.utf16}) {
+  var symbol = textFormat == TextFormat.utf16 ? 'GetMessageW' : 'GetMessageA';
+  final GetMessageP = dylib.lookupFunction<GetMessageC, GetMessageDart>(symbol);
 
   var result = GetMessageP(lpMsg, hwnd, wMsgFilterMin, wMsgFilterMax);
   return result != 0;

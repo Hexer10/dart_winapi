@@ -52,12 +52,17 @@ const _expReturn = -1;
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexa
 @experimental
 Pointer SetWindowsHookExA(int idHook, HookprocDart callback,
-    {Pointer hmod, int dwThreadId = 0}) {
+    {Pointer hmod,
+    int dwThreadId = 0,
+    TextFormat textFormat = TextFormat.utf16}) {
+  var symbol = textFormat == TextFormat.utf16
+      ? 'SetWindowsHookExW'
+      : 'SetWindowsHookExA';
   hmod ??= nullptr;
-  var cb = Pointer.fromFunction<HookprocC>(callback, _expReturn);
+  var cb;
+//  var cb = Pointer.fromFunction<HookprocC>(callback, _expReturn);
   final SetWindowsHookExAP =
-      dylib.lookupFunction<SetWindowsHookExAC, SetWindowsHookExADart>(
-          'SetWindowsHookExA');
+      dylib.lookupFunction<SetWindowsHookExAC, SetWindowsHookExADart>(symbol);
 
   var result = SetWindowsHookExAP(idHook, cb, hmod, dwThreadId);
   return result;

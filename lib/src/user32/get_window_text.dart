@@ -10,18 +10,22 @@ int GetWindowTextA(
   int   nMaxCount
 );
  */
-typedef GetWindowTextAC = Uint32 Function(
+typedef GetWindowTextC = Uint32 Function(
     Pointer<Hwnd> hWnd, Pointer<Utf8> lpString, Uint32 nMaxCount);
 
-typedef GetWindowTextADart = int Function(
+typedef GetWindowTextDart = int Function(
     Pointer<Hwnd> hWnd, Pointer<Utf8> lpString, int nMaxCount);
 
 /// Copies the text of the specified window's title bar
 /// (if it has one) into a buffer.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowtexta
-int GetWindowTextA(Pointer<Hwnd> hWnd, Pointer<Utf8> lpString, int nMaxCount) {
-  final GetWindowTextAP = dylib
-      .lookupFunction<GetWindowTextAC, GetWindowTextADart>('GetWindowTextA');
+int GetWindowText(Pointer<Hwnd> hWnd, Pointer<Utf8> lpString, int nMaxCount,
+    {TextFormat textFormat = TextFormat.utf16}) {
+  var symbol =
+      textFormat == TextFormat.utf16 ? 'GetWindowTextW' : 'GetWindowTextA';
+
+  final GetWindowTextAP =
+      dylib.lookupFunction<GetWindowTextC, GetWindowTextDart>(symbol);
 
   return GetWindowTextAP(hWnd, lpString, nMaxCount);
 }

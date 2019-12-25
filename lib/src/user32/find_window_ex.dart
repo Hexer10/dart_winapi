@@ -12,13 +12,13 @@ HWND FindWindowExA(
 );
  */
 
-typedef FindWindowExAC = Pointer<Hwnd> Function(
+typedef FindWindowExC = Pointer<Hwnd> Function(
     Pointer<Hwnd> hWndParent,
     Pointer<Hwnd> hWndChildAfter,
     Pointer<Utf8> lpszClass,
     Pointer<Utf8> lpszWindow);
 
-typedef FindWindowExADart = Pointer<Hwnd> Function(
+typedef FindWindowExDart = Pointer<Hwnd> Function(
     Pointer<Hwnd> hWndParent,
     Pointer<Hwnd> hWndChildAfter,
     Pointer<Utf8> lpszClass,
@@ -27,18 +27,21 @@ typedef FindWindowExADart = Pointer<Hwnd> Function(
 /// Retrieves a handle to a window whose class name and window name
 /// match the specified strings.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-findwindowexa
-Pointer<Hwnd> FindWindowExA(
+Pointer<Hwnd> FindWindowEx(
     {Pointer<Hwnd> hWndParent,
     Pointer<Hwnd> hWndChildAfter,
     Pointer<Utf8> lpszClass,
-    Pointer<Utf8> lpszWindow}) {
+    Pointer<Utf8> lpszWindow,
+    TextFormat textFormat = TextFormat.utf16}) {
   hWndParent ??= nullptr;
   hWndChildAfter ??= nullptr;
   lpszClass ??= nullptr;
   lpszWindow ??= nullptr;
 
-  final FindWindowExACP =
-      dylib.lookupFunction<FindWindowExAC, FindWindowExADart>('FindWindowExA');
+  var symbol =
+      textFormat == TextFormat.utf16 ? 'FindWindowExW' : 'FindWindowExA';
+  final FindWindowExP =
+      dylib.lookupFunction<FindWindowExC, FindWindowExDart>(symbol);
 
-  return FindWindowExACP(hWndParent, hWndChildAfter, lpszClass, lpszWindow);
+  return FindWindowExP(hWndParent, hWndChildAfter, lpszClass, lpszWindow);
 }
