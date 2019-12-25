@@ -19,8 +19,11 @@ typedef GetWindowTextDart = int Function(
 /// Copies the text of the specified window's title bar
 /// (if it has one) into a buffer.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowtexta
-int GetWindowText(Pointer<Hwnd> hWnd, Pointer<Utf8> lpString, int nMaxCount,
-    {TextFormat textFormat = TextFormat.utf16}) {
+int GetWindowText(
+    {@required Pointer<Hwnd> hWnd,
+    @required Pointer<Utf8> lpString,
+    @required int nMaxCount,
+    TextFormat textFormat = TextFormat.utf16}) {
   var symbol =
       textFormat == TextFormat.utf16 ? 'GetWindowTextW' : 'GetWindowTextA';
 

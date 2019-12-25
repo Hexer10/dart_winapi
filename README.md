@@ -13,9 +13,9 @@ You can import a single part of the library such as `user32.dart` or import all 
 Get cursor position, set it and send left click input and release.
 ```dart
   var point = Point.allocate();
-  GetCursorPos(point);
+  GetCursorPos(point: point);
   point.x += 10;
-  SetCursorPos(point.x, point.y);
+  SetCursorPosFromPoint(point);
   MouseEvent(dwFlags: MOUSEEVENTF_LEFTDOWN);
   MouseEvent(dwFlags: MOUSEEVENTF_LEFTUP);
   free(point.addressOf);

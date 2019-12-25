@@ -5,9 +5,9 @@ import 'package:ffi/ffi.dart';
 
 void main() {
   var point = Point.allocate();
-  GetCursorPos(point);
+  GetCursorPos(point: point);
   point.x += 10;
-  SetCursorPos(point.x, point.y);
+  SetCursorPosFromPoint(point: point);
   MouseEvent(dwFlags: MOUSEEVENTF_LEFTDOWN);
   MouseEvent(dwFlags: MOUSEEVENTF_LEFTUP);
   free(point.addressOf);

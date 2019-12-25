@@ -12,7 +12,7 @@ typedef GetKeyStateDart = int Function(
 
 /// Retrieves the status of the specified virtual key.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getkeystate
-int GetKeyState(int nVirtKey) {
+int GetKeyState({@required int nVirtKey}) {
   final GetKeyStateP =
       dylib.lookupFunction<GetKeyStateC, GetKeyStateDart>('GetKeyState');
 

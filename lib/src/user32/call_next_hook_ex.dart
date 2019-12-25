@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'user32.dart';
 
 /*
@@ -18,7 +17,7 @@ typedef CallNextHookExC = Uint32 Function(
 );
 
 typedef CallNextHookExDart = int Function(
-  Pointer hhk,
+  Pointer<HHook> hhk,
   int nCode,
   int wParam,
   int lParam,
@@ -27,7 +26,11 @@ typedef CallNextHookExDart = int Function(
 /// Passes the hook information to the next hook procedure
 ///in the current hook chain.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-callnexthookex
-int CallNextHookEx(Pointer hhk, int nCode, int wParam, int lParam) {
+int CallNextHookEx(
+    {@required int nCode,
+    @required int wParam,
+    @required int lParam,
+    Pointer<HHook> hhk}) {
   final CallNextHookExP = dylib
       .lookupFunction<CallNextHookExC, CallNextHookExDart>('CallNextHookEx');
 

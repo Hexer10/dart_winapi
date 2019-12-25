@@ -29,7 +29,7 @@ const KeyBoardEvent = KeybdEvent;
 /// Synthesises a keystore.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-keybd_event
 void KeybdEvent({
-  int bVk = 0,
+  @required int bVk,
   int bScan = 0,
   int dwFlags = 0,
   int dwExtraInfo = 0,

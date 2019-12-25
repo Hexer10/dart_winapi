@@ -67,7 +67,7 @@ typedef MouseEventDart = void Function(
 /// Synthesizes mouse motion and button clicks.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event
 void MouseEvent(
-    {int dwFlags = 0,
+    {@required int dwFlags,
     int dx = 0,
     int dy = 0,
     int dwData = 0,

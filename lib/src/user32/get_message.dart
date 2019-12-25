@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:meta/meta.dart';
 import 'user32.dart';
 
 /*
@@ -12,31 +13,6 @@ import 'user32.dart';
   POINT  pt;
   DWORD  lPrivate;
  */
-
-/// Msg struct
-class Msg extends Struct {
-  Pointer<Hwnd> hwnd;
-
-  @Uint32()
-  int message;
-
-  @Int32()
-  int wParam;
-
-  @Uint32()
-  int lParam;
-
-  @Uint32()
-  int time;
-
-  Pointer<Point> pt;
-
-  @Uint32()
-  int lPrivate;
-
-  /// Allocate a new point.
-  factory Msg.allocate() => allocate<Msg>().ref;
-}
 
 /*
  LPMSG lpMsg,
@@ -50,11 +26,15 @@ typedef GetMessageC = Uint8 Function(Pointer<Msg> lpMsg, Pointer<Hwnd> hwnd,
 typedef GetMessageDart = int Function(Pointer<Msg> lpMsg, Pointer<Hwnd> hwnd,
     int wMsgFilterMin, int wMsgFilterMax);
 
-/// Get message
+/// Retrieves a message from the calling thread's message queue.
 /// See https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage
-bool GetMessage(Pointer<Msg> lpMsg, Pointer<Hwnd> hwnd, int wMsgFilterMin,
-    int wMsgFilterMax,
-    {TextFormat textFormat = TextFormat.utf16}) {
+bool GetMessage(
+    {@required Pointer<Msg> lpMsg,
+    Pointer<Hwnd> hwnd,
+    int wMsgFilterMin = 0,
+    int wMsgFilterMax = 0,
+    TextFormat textFormat = TextFormat.utf16}) {
+  hwnd ??= nullptr;
   var symbol = textFormat == TextFormat.utf16 ? 'GetMessageW' : 'GetMessageA';
   final GetMessageP = dylib.lookupFunction<GetMessageC, GetMessageDart>(symbol);
 
