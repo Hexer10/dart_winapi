@@ -31,3 +31,7 @@
 ## 0.3.2
 
 - Added ShowWindow
+
+## 0.3.3 
+
+- Added GetForegroundWindow
