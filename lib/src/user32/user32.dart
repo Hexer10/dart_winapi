@@ -3,6 +3,7 @@ export 'package:meta/meta.dart';
 
 export 'call_next_hook_ex.dart';
 export 'find_window_ex.dart';
+export 'get_active_window.dart';
 export 'get_cursor_pos.dart';
 export 'get_desktop_window.dart';
 export 'get_key_state.dart';

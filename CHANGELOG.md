@@ -23,3 +23,7 @@
 
 - Changed api to use optional named parameters
 - Added short hand to set the cursor position given a point struct
+
+## 0.3.1
+
+- Added GetActiveWindow
