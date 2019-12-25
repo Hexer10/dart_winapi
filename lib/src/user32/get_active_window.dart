@@ -2,6 +2,10 @@ import 'dart:ffi';
 
 import 'user32.dart';
 
+/*
+HWND GetActiveWindow();
+ */
+
 typedef GetActiveWindowC = Pointer<Hwnd> Function();
 
 typedef GetActiveWindowDart = Pointer<Hwnd> Function();

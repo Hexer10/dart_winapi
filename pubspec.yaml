@@ -1,6 +1,6 @@
 name: dart_winapi
 description: Dart implementation of winapi using dart:ffi to call C++ apis.
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/Hexer10/dart_winapi
 
 environment:

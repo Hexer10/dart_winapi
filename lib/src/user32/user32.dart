@@ -16,6 +16,7 @@ export 'register_hotkey.dart';
 export 'send_input.dart';
 export 'set_cursor_position.dart';
 export 'set_windows_hook_ex.dart';
+export 'show_window.dart';
 export 'types.dart';
 
 /// User32.dll library

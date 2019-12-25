@@ -27,3 +27,7 @@
 ## 0.3.1
 
 - Added GetActiveWindow
+
+## 0.3.2
+
+- Added ShowWindow
