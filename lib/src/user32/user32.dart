@@ -19,6 +19,7 @@ export 'set_cursor_position.dart';
 export 'set_windows_hook_ex.dart';
 export 'show_window.dart';
 export 'types.dart';
+export 'unregister_hotkey.dart';
 
 /// User32.dll library
 final dylib = DynamicLibrary.open('User32.dll');
