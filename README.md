@@ -1,3 +1,6 @@
+# PROJECT DISCONTINUED
+##### Use https://pub.dev/packages/win32
+
 # Dart WinApi
 
 Dart implementation of the Win32 Api https://docs.microsoft.com/en-us/windows/win32/
